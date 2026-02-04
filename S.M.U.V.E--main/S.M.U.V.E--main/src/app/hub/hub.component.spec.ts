@@ -1,17 +1,22 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { HubComponent } from './hub.component';
 
 describe('HubComponent', () => {
-  let _component: HubComponent;
-  let _fixture: ComponentFixture<HubComponent>;
+  let component: HubComponent;
+  let fixture: ComponentFixture<HubComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HubComponent],
     }).compileComponents();
+
+    fixture = TestBed.createComponent(HubComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
   });
 
-  it('should be defined', () => {
-    expect(HubComponent).toBeDefined();
+  it('should create', () => {
+    expect(component).toBeTruthy();
   });
 });

@@ -2,7 +2,7 @@ import { Component, inject, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CollaborationService } from '../../services/collaboration.service';
-import { AuthService, AuthUser } from '../../services/auth.service';
+import { AuthUser, AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-collaboration-hub',
@@ -13,18 +13,12 @@ import { AuthService, AuthUser } from '../../services/auth.service';
 })
 export class CollaborationHubComponent implements OnInit, OnDestroy {
   readonly collaborationService = inject(CollaborationService);
-  private authService = inject(AuthService);
-
+  private readonly authService = inject(AuthService);
+  // Wire this up to the app's authentication/user context.
   currentUser: AuthUser | null = null;
   sessionIdToJoin = '';
 
-  ngOnInit(): void {
-    // Wire up authentication/user context properly
-    this.currentUser = this.authService.getCurrentUser();
-    if (!this.currentUser) {
-      console.warn('User not authenticated - collaboration features limited');
-    }
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {}
 

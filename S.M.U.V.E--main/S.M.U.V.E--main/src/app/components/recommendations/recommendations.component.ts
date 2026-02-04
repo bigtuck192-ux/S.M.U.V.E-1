@@ -39,13 +39,17 @@ export class RecommendationsComponent implements OnInit {
 
   executeRecommendation(rec: StrategicRecommendation) {
     this.userContext.setMainViewMode(rec.toolId as ViewMode);
-    // Store the recommendation context for the tool to access
+    // Persist recommendation context/parameters/prompts for tools to consume
     if (rec.context) {
-      sessionStorage.setItem(
-        'recommendationContext',
-        JSON.stringify(rec.context)
-      );
+      sessionStorage.setItem('recommendationContext', JSON.stringify(rec.context));
     }
-    console.log('Executing recommendation:', rec.title);
+    if ((rec as any).parameters) {
+      sessionStorage.setItem('recommendationParams', JSON.stringify((rec as any).parameters));
+    }
+    if (rec.prompt) {
+      sessionStorage.setItem('recommendationPrompt', rec.prompt);
+    }
+    // Basic action handling hook — future work can map actions to tool APIs
+    console.log('Executing recommendation action:', rec.action, rec.title);
   }
 }

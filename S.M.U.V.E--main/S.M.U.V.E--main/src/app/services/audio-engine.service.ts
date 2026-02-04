@@ -116,16 +116,9 @@ export class AudioEngineService {
   private crossfaderHamster = false;
 
   constructor() {
-    try {
-      this.ctx = new (
-        window.AudioContext || (window as any).webkitAudioContext
-      )();
-    } catch (_e) {
-      // AudioContext not available in test environment, create a mock
-      console.warn('AudioContext not available, using mock');
-      this.ctx = null as any;
-      return;
-    }
+    this.ctx = new (
+      window.AudioContext || (window as any).webkitAudioContext
+    )();
     this.masterGain = this.ctx.createGain();
     this.masterGain.gain.value = 0.9;
     this.compressor = this.ctx.createDynamicsCompressor();
@@ -651,22 +644,6 @@ export class AudioEngineService {
 
     osc.start(now);
     osc.stop(now + duration + 2.0);
-  }
-
-  // Convenience helper to get current audio context time
-  now(): number {
-    return this.ctx.currentTime;
-  }
-
-  // Play a simple pitched note using the synth voice
-  playNote(
-    frequency: number,
-    when: number,
-    duration: number,
-    velocity = 1,
-    pan = 0
-  ) {
-    this.playSynth(when, frequency, duration, velocity, pan);
   }
 
   midiToFreq(midi: number) {

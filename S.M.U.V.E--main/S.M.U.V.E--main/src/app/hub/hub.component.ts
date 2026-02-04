@@ -1,18 +1,12 @@
-import {
-  Component,
-  OnInit,
-  OnDestroy,
-  signal,
-  computed,
-  inject,
-} from '@angular/core';
+import { Component, OnInit, OnDestroy, signal, computed, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Game, Challenge, CommunityPost, BattleConfig } from './hub.models';
 import { GameService } from './game.service';
-import { UserProfileService } from '../services/user-profile.service';
+import { UserProfileService, UserProfile } from '../services/user-profile.service';
 import { DeckService } from '../services/deck.service';
+import { AudioEngineService } from '../services/audio-engine.service';
 import { UIService } from '../services/ui.service';
 import { AiService } from '../services/ai.service';
 import { Subject } from 'rxjs';
@@ -36,14 +30,12 @@ export class HubComponent implements OnInit, OnDestroy {
   // Quick Start Form
   quickProfile = signal({
     artistName: '',
-    primaryGenre: 'Hip Hop',
+    primaryGenre: 'Hip Hop'
   });
 
   // Radio State
   isRadioPlaying = computed(() => this.deckService.deckA().isPlaying);
-  radioTrackName = computed(
-    () => this.deckService.deckA().track?.name || 'S.M.U.V.E Radio'
-  );
+  radioTrackName = computed(() => this.deckService.deckA().track?.name || 'S.M.U.V.E Radio');
 
   // AI Jam State (Shared with Tha Spot)
   isAIBassistEnabled = false;
@@ -88,7 +80,15 @@ export class HubComponent implements OnInit, OnDestroy {
     },
   ]);
 
-  genres = ['Hip Hop', 'R&B', 'Pop', 'Electronic', 'Rock', 'Jazz', 'Classical'];
+  genres = [
+    'Hip Hop',
+    'R&B',
+    'Pop',
+    'Electronic',
+    'Rock',
+    'Jazz',
+    'Classical'
+  ];
 
   gameGenres = [
     'Shooter',
@@ -234,7 +234,7 @@ export class HubComponent implements OnInit, OnDestroy {
     this.profileService.updateProfile({
       ...current,
       artistName: this.quickProfile().artistName,
-      primaryGenre: this.quickProfile().primaryGenre,
+      primaryGenre: this.quickProfile().primaryGenre
     });
 
     // Smooth transition to full profile

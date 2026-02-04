@@ -114,9 +114,8 @@ export class GameService implements OnDestroy {
 
   listGames(
     filters: { genre?: string; tag?: string; query?: string },
-    sort: 'Popular' | 'Rating' | 'Newest' = 'Popular'
+    _sort: 'Popular' | 'Rating' | 'Newest' = 'Popular'
   ): Observable<Game[]> {
-    console.log('Listing games with sort:', sort);
     return this.http.get<Game[]>(GAMES_API_URL);
   }
 

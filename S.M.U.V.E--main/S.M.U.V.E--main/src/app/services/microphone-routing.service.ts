@@ -1,7 +1,8 @@
 import { Injectable, computed, effect, signal } from '@angular/core';
 
-// Formalized audio routing interfaces - centralized in this service
-// These can be imported and used across the application
+// Interfaces for microphone routing and channel configuration
+// These types are intentionally declared here for now; they can be
+// refactored into a shared types file when the routing module is split out.
 export type ConnectionType =
   | 'usb'
   | 'xlr'

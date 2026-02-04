@@ -281,39 +281,4 @@ export class AuthService {
     }
     return hash.toString(36);
   }
-
-  getCurrentUser(): AuthUser | null {
-    return this._currentUser();
-  }
-
-  async signup(
-    email: string,
-    password: string,
-    artistName: string
-  ): Promise<void> {
-    const result = await this.register({ email, password }, artistName);
-    if (!result.success) {
-      throw new Error(result.message);
-    }
-  }
-
-  async loginAsGuest(): Promise<void> {
-    const guestUser: AuthUser = {
-      id: this.generateUserId(),
-      email: 'guest@smuve.local',
-      artistName: 'Guest Artist',
-      createdAt: new Date(),
-      lastLogin: new Date(),
-      profileCompleteness: 0,
-    };
-
-    const guestProfile: UserProfile = {
-      ...initialProfile,
-      artistName: 'Guest Artist',
-    };
-
-    this._currentUser.set(guestUser);
-    this._userProfile.set(guestProfile);
-    this._isAuthenticated.set(true);
-  }
 }

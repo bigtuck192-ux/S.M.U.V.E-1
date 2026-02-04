@@ -1,6 +1,6 @@
 <div class="midi-manager-container">
   <h5><i class="fas fa-sliders-h"></i> MIDI Input</h5>
-  <select (change)="onSelectionChange($event)" class="midi-device-select">
+  <select (change)="connectDevice($event)" class="midi-device-select">
     <option value="">Select a MIDI Device</option>
     <option *ngFor="let device of availableDevices()" [value]="device.id">
       {{ device.name }}

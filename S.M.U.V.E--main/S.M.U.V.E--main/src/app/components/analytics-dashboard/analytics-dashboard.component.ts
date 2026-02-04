@@ -18,8 +18,7 @@ interface Superfan {
   styleUrls: ['./analytics-dashboard.component.css'],
 })
 export class AnalyticsDashboardComponent {
-  private analyticsService = inject(AnalyticsService);
-  analytics = this.analyticsService;
+  analytics = inject(AnalyticsService);
 
   superfans = signal<Superfan[]>([
     { name: 'Alex M.', streams: 450, location: 'London', status: 'Active' },
