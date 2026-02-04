@@ -1,0 +1,41 @@
+<div class="remix-arena-container">
+  <header class="arena-header">
+    <h1>Remix Arena</h1>
+    <p>Collaborate on remixes in real-time.</p>
+  </header>
+
+  <div class="collaboration-section">
+    <div class="session-management">
+      <button class="share-button">Share Session</button>
+      <p>Share this session to invite others to join.</p>
+    </div>
+
+    <div class="participants-section">
+      <h2>Participants</h2>
+      <ul class="participants-list">
+        <li>Coming soon</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <div class="code-editor-section">
+      <h2>Remix Code</h2>
+      <textarea [(ngModel)]="code" (ngModelChange)="onCodeChange($event)" class="code-editor"></textarea>
+    </div>
+
+    <div class="chat-section">
+      <h2>Chat</h2>
+      <div class="chat-messages">
+        <div class="chat-message">
+          <span class="username">System:</span>
+          <span class="message">Chat coming soon.</span>
+        </div>
+      </div>
+      <input type="text" placeholder="Type your message..." disabled class="chat-input">
+    </div>
+  </div>
+
+  <app-stem-controls></app-stem-controls>
+  <app-sample-library></app-sample-library>
+</div>

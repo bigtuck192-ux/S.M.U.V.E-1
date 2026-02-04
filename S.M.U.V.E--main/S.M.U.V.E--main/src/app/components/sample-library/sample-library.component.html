@@ -1,0 +1,19 @@
+<div class="sample-library">
+  <h2>Sample Library</h2>
+  <div class="search">
+    <input
+      type="text"
+      placeholder="Search samples..."
+      [(ngModel)]="searchTerm"
+    />
+  </div>
+
+  <div class="samples-grid">
+    <div *ngFor="let sample of filteredSamples" class="sample-card">
+      <h3>{{ sample.name }}</h3>
+      <p>Category: {{ sample.category }}</p>
+      <p>Duration: {{ sample.duration }}s</p>
+      <button (click)="playSample(sample)">Play</button>
+    </div>
+  </div>
+</div>

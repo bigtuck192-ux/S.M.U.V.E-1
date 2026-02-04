@@ -1,0 +1,67 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "projects": {
+    "app": {
+      "projectType": "application",
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "outputPath": "dist/app",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.json",
+            "polyfills": ["zone.js"],
+            "assets": ["src/assets", "src/manifest.webmanifest"],
+            "styles": [
+              "src/styles.css",
+              "node_modules/animate.css/animate.min.css"
+            ],
+            "scripts": ["node_modules/wow.js/dist/wow.min.js"]
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "all",
+              "optimization": true
+            },
+            "ghpages": {
+              "outputHashing": "all",
+              "optimization": true,
+              "baseHref": "./",
+              "assets": ["src/assets"]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "port": 4200,
+            "host": "0.0.0.0"
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "app:build:production"
+            },
+            "development": {
+              "buildTarget": "app:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
+      }
+    }
+  },
+  "cli": {
+    "analytics": false
+  }
+}

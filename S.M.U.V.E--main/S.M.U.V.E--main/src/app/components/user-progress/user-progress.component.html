@@ -1,0 +1,16 @@
+<div class="user-progress">
+  <h2>Your Progress</h2>
+  <div *ngIf="!isLoading()">
+    <div *ngIf="progress()">
+      <h3>{{ progress()?.artistName }}</h3>
+      <p>Level: {{ progress()?.currentLevel }}</p>
+      <p>Total Points: {{ progress()?.totalPoints }}</p>
+    </div>
+    <div *ngIf="!progress()">
+      <p>No progress data available</p>
+    </div>
+  </div>
+  <div *ngIf="isLoading()">
+    <p>Loading...</p>
+  </div>
+</div>
