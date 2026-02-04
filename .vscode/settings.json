@@ -1,0 +1,4 @@
+{
+    "chat.edits2.enabled": true,
+    "chat.agent.maxRequests": 250
+}
