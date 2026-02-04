@@ -173,6 +173,7 @@ export interface StrategicRecommendation {
   toolId: string; // e.g., 'piano-roll', 'image-editor'
   action: string; // e.g., 'open', 'generate-image'
   prompt?: string; // Optional prompt for generative tools
+  context?: Record<string, any>;
 }
 
 // --- END: INTERNAL TYPE DECLARATIONS ---
